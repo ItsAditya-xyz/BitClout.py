@@ -2,7 +2,7 @@
 
 A python package for bitclout.
 
-Developed by [ItsAditya](https://bitclout.com/itsaditya)
+Developed by [ItsAditya](https://bitclout.com/u/itsaditya)
 
 ## Examples of How To Use BitClout.py
 

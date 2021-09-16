@@ -7,22 +7,22 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '0.0.13'
-DESCRIPTION = 'Streaming video data via networks'
-LONG_DESCRIPTION = 'A package that allows to build simple streams of video, audio and camera data.'
+VERSION = '0.0.1'
+DESCRIPTION = 'A python module for bitclout'
+LONG_DESCRIPTION = 'A package that allows to fetch various information from the bitclout blockchain using the bitclout APIs. BitClout is a decentralised social media network'
 
 # Setting up
 setup(
-    name="vidstream",
-    version=VERSION,
-    author="NeuralNine (Florian Dedov)",
-    author_email="<mail@neuralnine.com>",
-    description=DESCRIPTION,
+    name="bitclout",
+    version= VERSION,
+    author="ItsAditya (https://bitclout.com/u/ItsAditya)",
+    author_email="<chaudharyaditya0005@gmail.com>",
+    description="A python module for bitclout",
     long_description_content_type="text/markdown",
     long_description=long_description,
     packages=find_packages(),
-    install_requires=['opencv-python', 'pyautogui', 'pyaudio'],
-    keywords=['python', 'video', 'stream', 'video stream', 'camera stream', 'sockets'],
+    install_requires=[],
+    keywords=['python', 'bitclout', 'social media', 'crypto', 'blockchain', 'decentralisation'],
     classifiers=[
         "Development Status :: 1 - Planning",
         "Intended Audience :: Developers",
