@@ -4,6 +4,7 @@ A python package for bitclout.
 
 Developed by [ItsAditya](https://bitclout.com/u/itsaditya)
 
+Run `pip install bitclout` to install the module!
 ## Examples of How To Use BitClout.py
 
 Getting $CLOUT price
