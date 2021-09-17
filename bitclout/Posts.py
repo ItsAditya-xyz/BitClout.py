@@ -1,19 +1,18 @@
 import requests
 import json
-import Route
+from bitclout.Route import getRoute
 
 class Posts:
 
-    route = Route.getRoute()
-    def  getUserPosts(self, username = "", publicKey = "",  numToFetch = 10, mediaRequired = False, lastPostHash= "",readerPublicKey = "BC1YLianxEsskKYNyL959k6b6UPYtRXfZs4MF3GkbWofdoFQzZCkJRB"):
+    def  getUserPosts(username = "", publicKey = "",  numToFetch = 10, mediaRequired = False, lastPostHash= "",readerPublicKey = "BC1YLianxEsskKYNyL959k6b6UPYtRXfZs4MF3GkbWofdoFQzZCkJRB"):
         payload = {"PublicKeyBase58Check":publicKey,
                     "Username":username,
                     "ReaderPublicKeyBase58Check":readerPublicKey,
                     "LastPostHashHex":lastPostHash,
                     "NumToFetch":numToFetch,
                     "MediaRequired":mediaRequired}
-
-        endpointURL = self.route + "get-posts-for-public-key"
+        ROUTE = getRoute()
+        endpointURL = ROUTE + "get-posts-for-public-key"
         response = requests.post(endpointURL, json = payload)
         return response.json()
 
@@ -24,8 +23,8 @@ class Posts:
                 "CommentOffset":commentOffset,
                 "CommentLimit":commentLimit,
                 "AddGlobalFeedBool":addGlobalFeedBool}
-
-        endpointURL = self.route + "get-single-post"
+        ROUTE = getRoute()
+        endpointURL = ROUTE + "get-single-post"
         response = requests.post(endpointURL, json = payload)
         return response.json()
             
