@@ -19,7 +19,7 @@ import bitclout
 import json
 with open("userInfo.json", "w") as file:
     listOfPublicKeys = ["BC1YLjJVhcVAi5UCYZ2aTNwRMtqvzQar4zbymr7fyinu8MsWLx2A1g1"] # you can pass multiple public key of users
-    json.dump(bitclout.Users.getUserStateless(listOfPublicKeys))
+    json.dump(bitclout.Users.getUserStateless(listOfPublicKeys), file)
 ```
 
 Getting user info through BitClout username
@@ -28,7 +28,7 @@ import bitclout
 import json
 with open("userInfo.json", "w") as file:
     username = "ItsAditya" 
-    json.dump(bitclout.Users.getSingleProfile(username)) #you can also pass publicKey = "<public key of any user>" here instead of username just in case you want to get the profile info from public key
+    json.dump(bitclout.Users.getSingleProfile(username), file) #you can also pass publicKey = "<public key of any user>" here instead of username just in case you want to get the profile info from public key
 
 ```
 
@@ -64,7 +64,7 @@ import bitclout
 import json
 with open("blockedUsers.json", "w") as file:
     publicKey = "BC1YLhBLE1834FBJbQ9JU23JbPanNYMkUsdpJZrFVqNGsCe7YadYiUg" # well, that's my (@ItsAditya) public key :)
-    json.dump(bitclout.Users.getUsersBlocked(publicKey))
+    json.dump(bitclout.Users.getUsersBlocked(publicKey), file)
 ```
 
 Getting user posts
