@@ -17,7 +17,7 @@ class Posts:
         return response.json()
 
     def getPostInfo(postHash, commentLimit = 20, fetchParents = False, commentOffset = 0, addGlobalFeedBool = False, readerPublicKey = "BC1YLianxEsskKYNyL959k6b6UPYtRXfZs4MF3GkbWofdoFQzZCkJRB"):
-        payload = {"PostHashHex":"",
+        payload = {"PostHashHex":postHash,
                 "ReaderPublicKeyBase58Check":readerPublicKey,
                 "FetchParents":fetchParents,
                 "CommentOffset":commentOffset,

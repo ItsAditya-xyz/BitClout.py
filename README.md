@@ -28,8 +28,7 @@ import bitclout
 import json
 with open("userInfo.json", "w") as file:
     username = "ItsAditya" 
-    json.dump(bitclout.Users.getSingleProfile(username), file) #you can also pass publicKey = "<public key of any user>" here instead of username just in case you want to get the profile info from public key
-
+    json.dump(bitclout.Users.getSingleProfile(username=username), file) #you can also pass publicKey = "<public key of any user>" here instead of username just in case you want to get the profile info from public key
 ```
 
 Getting profile pic through public key
