@@ -1,12 +1,8 @@
 import requests
 import json
-
-from requests.api import get
 from bitclout.Route import getRoute
 
 class Users:
-    
-
     def getUserStateless(publicKeyList, skipForLeaderboard = True):
         '''when skipForLeaderboard is true, it doesn't return info like UsersYouHODL,
             followers public key and blocked users'''
