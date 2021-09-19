@@ -7,13 +7,13 @@ Developed by [ItsAditya](https://bitclout.com/u/itsaditya)
 Run `pip install bitclout` to install the module!
 ## Examples of How To Use BitClout.py
 
-Getting $CLOUT price
+### Getting $CLOUT price
 ```python
 import bitclout
 print(bitclout.Clout.getCloutPrice())
 ```
 
-Getting user(s) info through publicKey(s)
+### Getting user(s) info through publicKey(s)
 ```python
 import bitclout
 import json
@@ -22,7 +22,7 @@ with open("userInfo.json", "w") as file:
     json.dump(bitclout.Users.getUserStateless(listOfPublicKeys), file)
 ```
 
-Getting user info through BitClout username
+### Getting user info through BitClout username
 ```python
 import bitclout
 import json
@@ -31,7 +31,7 @@ with open("userInfo.json", "w") as file:
     json.dump(bitclout.Users.getSingleProfile(username=username), file) #you can also pass publicKey = "<public key of any user>" here instead of username just in case you want to get the profile info from public key
 ```
 
-Getting profile pic through public key
+### Getting profile pic through public key
 ```python
 import bitclout
 publicKey = "BC1YLhBLE1834FBJbQ9JU23JbPanNYMkUsdpJZrFVqNGsCe7YadYiUg" # well, that's my (@ItsAditya) public key :)
@@ -47,7 +47,7 @@ with open("wallet.json", "w") as file:
     json.dump(walletData, file)
 ```
 
-getting creator coin holders of a user
+### getting creator coin holders of a user
 ```python
 import bitclout 
 import json
@@ -57,7 +57,7 @@ with open("investors.json", "w") as file:
     # well, you can play around with above list of args to get what you want :)
     json.dump(investorData, file) 
 ```
-Getting users who are blocked by a profile
+### Getting users who are blocked by a profile
 ```python
 import bitclout
 import json
@@ -66,14 +66,14 @@ with open("blockedUsers.json", "w") as file:
     json.dump(bitclout.Users.getUsersBlocked(publicKey), file)
 ```
 
-Getting user posts
+### Getting user posts
 ```python
 import bitclout
 import json
 with open("UserPosts.json", "w") as file:
     json.dump(bitclout.Posts.getUserPosts(username="ItsAditya"), file)
 ```
-Getting information about single post ( likes, comments etc on a post)
+### Getting information about single post ( likes, comments etc on a post)
 ```python
 import bitclout
 import json
@@ -85,7 +85,7 @@ with open("UserPosts.json", "w") as file:
     json.dump(postInfo, file)
 ```
 
-Getting diamond information about a user (received or sent)
+#### Getting diamond information about a user (received or sent)
 ```python
 import bitclout
 import json
@@ -95,6 +95,17 @@ with open("diamondsReceived.json", "w") as file:
     '''reveived is an optional arguement when true it returns diamond received by users else
     return diamonds give by users'''
     json.dump(diamondData, file)
+```
+
+### Getting deleted posts of a user
+```python
+import bitclout
+import json
+
+#public Key of @DiamondHands
+publicKey = "BC1YLgU67opDhT9bTPsqvue9QmyJLDHRZrSj77cF3P4yYDndmad9Wmx" 
+with open("HiddenPosts.json", "w") as file:
+    json.dump(bitclout.Posts.getHiddenPosts(publicKey), file)
 ```
 More docs coming soon!
 

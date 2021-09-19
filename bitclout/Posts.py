@@ -28,3 +28,21 @@ class Posts:
         response = requests.post(endpointURL, json = payload)
         return response.json()
             
+    def getHiddenPosts(publicKey):
+        '''to get all the deleted posts of a user
+        API credits: @Kuririn (https://bitclout.com/u/kuririn)'''
+        paylod = {"userParams":
+                    {"queryParams":
+                        {"length":0},
+                        "headersParams":{"length":0},
+                        "cookiesParams":{"length":0},
+                        "bodyParams":{"0":publicKey,"length":1}
+                    },    
+                    "password":"",
+                    "environment":"production",
+                    "queryType":"RESTQuery",
+                    "frontendVersion":"1",
+                    "releaseVersion":None,"includeQueryExecutionMetadata":True}
+        response = requests.post("https://apps.tryretool.com/api/public/8952bb20-817f-46f0-b28f-67569f4db682/query?queryName=getHiddenPosts", json= paylod)
+        return response.json()
+
