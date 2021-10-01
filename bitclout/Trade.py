@@ -41,9 +41,9 @@ class Trade:
 
     def getMaxCoins(self, publicKeyOfCoin):
         ROUTE = getRoute()
-        endpoint = ROUTE+ "get-users-stateless"
-        payload =  {"PublicKeysBase58Check": [self.PUBLIC_KEY]}
-        response = requests.post(endpoint, json = payload)
+        endpoint = ROUTE + "get-users-stateless"
+        payload = {"PublicKeysBase58Check": [self.PUBLIC_KEY]}
+        response = requests.post(endpoint, json=payload)
         hodlings = response.json()["UserList"][0]["UsersYouHODL"]
         for hodling in hodlings:
             if hodling["CreatorPublicKeyBase58Check"] == publicKeyOfCoin:
@@ -54,15 +54,15 @@ class Trade:
                     return -1
         return -1
 
-    def sell(self, keyToSell, coinsToSellNanos = 0, sellMax = False):
+    def sell(self, keyToSell, coinsToSellNanos=0, sellMax=False):
         coinsToSell = coinsToSellNanos
         if sellMax == True:
-            maxCoins = Trade.getMaxCoins(self, publicKeyOfCoin = keyToSell)
+            maxCoins = Trade.getMaxCoins(self, publicKeyOfCoin=keyToSell)
             if maxCoins == -1:
                 print("You don't hodl that creator")
                 return 404
             else:
-                coinsToSell =  maxCoins
+                coinsToSell = maxCoins
 
         ROUTE = getRoute()
         payload = {
@@ -80,7 +80,7 @@ class Trade:
         res = requests.post(
             endpointURL, json=payload
         )
-        transactionHex =  res.json()["TransactionHex"]
+        transactionHex = res.json()["TransactionHex"]
         signedTransactionHex = Sign_Transaction(
             self.SEED_HEX, transactionHex
         )  # txn signature
