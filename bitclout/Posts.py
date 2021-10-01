@@ -45,4 +45,3 @@ class Posts:
                     "releaseVersion":None,"includeQueryExecutionMetadata":True}
         response = requests.post("https://apps.tryretool.com/api/public/8952bb20-817f-46f0-b28f-67569f4db682/query?queryName=getHiddenPosts", json= paylod)
         return response.json()
-

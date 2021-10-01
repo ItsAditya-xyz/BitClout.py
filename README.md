@@ -112,3 +112,46 @@ More docs coming soon!
 Found any issue ? Report us on our repo: https://github.com/AdityaChaudhary0005/BitClout.py
 
 Tip the author of this module some #CLOUT at: https://bitclout.com/u/ItsAditya (even 1 diamond counts :)
+
+
+### Buying creator coin of a user
+```python
+from bitclout import *
+
+''' SEEDHEX should always be kept private. It has access to your complete wallet. It's kinda like
+    seed phrase. This is why writing methods in backend isn't a good practice until we have derived keys.
+    You can only automate your own account and can't have user authorisation. It is recommended to use test account while using write methods.
+
+    You can find the seedHex of your account in your browser storage. Just open https://bitclout.com/ > Dev tools > Application > Storage > Local Storage > https://identity.bitclout.com > users > Select the public key with which you want to post > seedHex'''
+SEEDHEX = "" # you seedHex
+PUBLIC_KEY = "" #you PublicKey
+
+
+PublicKeyToBuy = "BC1YLhBLE1834FBJbQ9JU23JbPanNYMkUsdpJZrFVqNGsCe7YadYiUg" 
+trade = Trade(SEEDHEX, PUBLIC_KEY)
+status = trade.buy(keyToBuy = PublicKeyToBuy, DeSo = 0.1) # you are buying 0.1 DeSO of the creator's coin
+print(status)  #200 if transaction was succesfull
+```
+
+### Selling creator coin of a user
+```python
+from bitclout import *
+
+''' SEEDHEX should always be kept private. It has access to your complete wallet. It's kinda like
+    seed phrase. This is why writing methods in backend isn't a good practice until we have derived keys.
+    You can only automate your own account and can't have user authorisation. It is recommended to use test account while using write methods.
+
+    You can find the seedHex of your account in your browser storage. Just open https://bitclout.com/ > Dev tools > Application > Storage > Local Storage > https://identity.bitclout.com > users > Select the public key with which you want to post > seedHex'''
+SEEDHEX = "" # you seedHex
+PUBLIC_KEY = "" #you PublicKey
+
+
+publicKeyToSell = "BC1YLhBLE1834FBJbQ9JU23JbPanNYMkUsdpJZrFVqNGsCe7YadYiUg" 
+trade = Trade(SEEDHEX, PUBLIC_KEY)
+status = trade.sell(keyToSell = publicKeyToSell, sellMax = True)# you are selling max coins of the creator
+print(status)  #200 if transaction was succesfull
+```
+
+
+
+
