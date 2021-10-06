@@ -1,4 +1,4 @@
-#this file has code for signing a transaction
+# This file has code for signing a transaction --> Credit: MiniGlome
 import hashlib
 import hmac
 
@@ -31,57 +31,62 @@ n = 0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141
 
 def point_add(point1, point2):
 	# Returns the result of point1 + point2 according to the group law.
-    if point1 is None:
-        return point2
-    if point2 is None:
-        return point1
+	if point1 is None:
+		return point2
+	if point2 is None:
+		return point1
 
-    x1, y1 = point1
-    x2, y2 = point2
+	x1, y1 = point1
+	x2, y2 = point2
 
-    if x1 == x2 and y1 != y2:
-        return None
+	if x1 == x2 and y1 != y2:
+		return None
 
-    if x1 == x2:
-        m = (3 * x1 * x1) * pow(2 * y1, -1, p)
-    else:
-        m = (y1 - y2) * pow(x1 - x2, -1, p)
+	if x1 == x2:
+		m = (3 * x1 * x1) * pow(2 * y1, -1, p)
+	else:
+		m = (y1 - y2) * pow(x1 - x2, -1, p)
 
-    x3 = m * m - x1 - x2
-    y3 = y1 + m * (x3 - x1)
-    result = (x3 % p, -y3 % p)
+	x3 = m * m - x1 - x2
+	y3 = y1 + m * (x3 - x1)
+	result = (x3 % p, -y3 % p)
 
-    return result
+	return result
 
 def scalar_mult(k, point):
 	# Returns k * point computed using the double and point_add algorithm.
-    result = None
-    addend = point
+	result = None
+	addend = point
 
-    while k:
-        if k & 1:
-            # Add.
-            result = point_add(result, addend)
-        # Double.
-        addend = point_add(addend, addend)
-        k >>= 1
+	while k:
+		if k & 1:
+			# Add.
+			result = point_add(result, addend)
+		# Double.
+		addend = point_add(addend, addend)
+		k >>= 1
 
-    return result
+	return result
 
 #######
 
 def to_DER(r, s): # Signature to DER format
 	r = bytes.fromhex(r)
 	s = bytes.fromhex(s)
-	if r[0] > 0x80:
+	if r[0] >= 0x80:
 		r = bytes.fromhex("00")+r
-	if s[0] > 0x80:
+	if s[0] >= 0x80:
 		s = bytes.fromhex("00")+s
 	res = bytes.fromhex("02"+hex(len(r))[2:]) + r + bytes.fromhex("02"+hex(len(s))[2:]) + s
 	res = bytes.fromhex("30"+hex(len(res))[2:]) + res
 
 	return res.hex()
 
+def hexify(n):
+	n = hex(n)[2:]
+	if len(n)%2 != 0:
+		n = "0"+n
+	return n
 
 
 def Sign_Transaction(seedHex, TransactionHex):
@@ -93,7 +98,7 @@ def Sign_Transaction(seedHex, TransactionHex):
 	r = kpX % n
 	s = pow(k, -1, n) * (r * int(seedHex, 16)+int(s256.hex(), 16))
 	s = s % n
-	signature = to_DER(hex(r)[2:].zfill(64), hex(s)[2:].zfill(64))
+	signature = to_DER(hexify(r), hexify(s))
 	signed_transaction = TransactionHex[:-2] + hex(len(bytearray.fromhex(signature)))[2:] + signature
-  
+	
 	return signed_transaction
