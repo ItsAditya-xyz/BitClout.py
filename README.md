@@ -187,3 +187,17 @@ post = Post(SEEDHEX, PUBLIC_KEY)
 status = post.send("This post was sent using the bitclout python library 😎")
 print(status)  # 200 if post was successfull
 ```
+
+### Sending direct message on bitclout
+```python
+from bitclout import Message
+import json
+
+SEEDHEX = "" # your seed Hex
+PUBLIC_KEY = "" #your public Key
+msg = Message(SEEDHEX, PUBLIC_KEY)
+text = "This is a direct message made using bitclout.py"
+recipientKey = "BC1YLhBLE1834FBJbQ9JU23JbPanNYMkUsdpJZrFVqNGsCe7YadYiUg"
+status = msg.send(recipientKey, text)
+print(status)  # 200 if post was successfulld
+```
